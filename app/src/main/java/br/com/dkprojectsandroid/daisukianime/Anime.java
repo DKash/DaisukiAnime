@@ -1,15 +1,19 @@
 package br.com.dkprojectsandroid.daisukianime;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Audry Martins on 20/04/2016.
  */
+@Parcel
 public class Anime
 {
     //Atributos
 
+    private int codigo;
     private String tituloOriginal;
     private String titulo;
     private String criador;
@@ -26,7 +30,7 @@ public class Anime
     private Enum<Status> status;
     private String sinopse;
     private boolean possuiTemporada;
-    private String temporada;
+    private Temporada temporada;
     private String audio;
     private String legenda;
 
@@ -46,17 +50,18 @@ public class Anime
         this.status = Status.Completo;
         this.sinopse = "";
         this.possuiTemporada = false;
-        this.temporada = "";
+        this.temporada = new Temporada();
         this.audio = "";
         this.legenda = "";
     }
 
-    public Anime(String tituloOriginal, String titulo, String criador, String produtora,
+    public Anime(int codigo, String tituloOriginal, String titulo, String criador, String produtora,
                  String capa, List<String> fotos, int episodios, int ovas,
                  int classificacao, String fansub, String genero, String ano, double nota,
                  Enum<Status> status, String sinopse, boolean possuiTemporada,
-                 String temporada, String audio, String legenda)
+                 Temporada temporada, String audio, String legenda)
     {
+        this.codigo = codigo;
         this.tituloOriginal = tituloOriginal;
         this.titulo = titulo;
         this.criador = criador;
@@ -81,6 +86,17 @@ public class Anime
     //Métodos
 
     //Gets e Sets
+
+
+    public int getCodigo()
+    {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo)
+    {
+        this.codigo = codigo;
+    }
 
     public String getTituloOriginal()
     {
@@ -192,12 +208,12 @@ public class Anime
         this.genero = genero;
     }
 
-    public int getAno()
+    public String getAno()
     {
         return ano;
     }
 
-    public void setAno(int ano)
+    public void setAno(String ano)
     {
         this.ano = ano;
     }
@@ -242,12 +258,12 @@ public class Anime
         this.possuiTemporada = possuiTemporada;
     }
 
-    public String getTemporada()
+    public Temporada getTemporada()
     {
         return temporada;
     }
 
-    public void setTemporada(String temporada)
+    public void setTemporada(Temporada temporada)
     {
         this.temporada = temporada;
     }
