@@ -1,8 +1,11 @@
-package br.com.dkprojectsandroid.daisukianime;
+package br.com.dkprojectsandroid.daisukianime.classesBasicas;
+
+import org.parceler.Parcel;
 
 /**
  * Created by Audry Martins on 21/04/2016.
  */
+@Parcel
 public class Temporada
 {
     //Atributos

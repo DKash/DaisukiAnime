@@ -1,4 +1,4 @@
-package br.com.dkprojectsandroid.daisukianime;
+package br.com.dkprojectsandroid.daisukianime.fragments;
 
 
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import org.parceler.Parcels;
 
+import br.com.dkprojectsandroid.daisukianime.R;
+import br.com.dkprojectsandroid.daisukianime.classesBasicas.Anime;
 import butterknife.ButterKnife;
 
 

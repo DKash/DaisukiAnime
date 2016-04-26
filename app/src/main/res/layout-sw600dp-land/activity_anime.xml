@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/fragment_lista"
-        android:name="br.com.dkprojectsandroid.daisukianime.ListaAnimeFragment"
+        android:name="br.com.dkprojectsandroid.daisukianime.fragments.ListaAnimeFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"/>

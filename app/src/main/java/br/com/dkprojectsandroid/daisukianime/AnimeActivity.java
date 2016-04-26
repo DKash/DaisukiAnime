@@ -7,6 +7,10 @@ import android.os.Bundle;
 
 import org.parceler.Parcels;
 
+import br.com.dkprojectsandroid.daisukianime.classesBasicas.Anime;
+import br.com.dkprojectsandroid.daisukianime.fragments.DetalheAnimeFragment;
+import br.com.dkprojectsandroid.daisukianime.fragments.ListaAnimeFragment;
+
 public class AnimeActivity extends AppCompatActivity
         implements ListaAnimeFragment.AnimeClickListener
 {
@@ -39,6 +43,7 @@ public class AnimeActivity extends AppCompatActivity
             Intent it = new Intent(this, DetalheAnimeActivity.class);
             Parcelable p = Parcels.wrap(anime);
             it.putExtra(DetalheAnimeActivity.EXTRA_ANIME, p);
+            startActivity(it);
         }
     }
 }

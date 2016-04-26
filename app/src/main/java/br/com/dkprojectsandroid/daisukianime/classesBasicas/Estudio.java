@@ -1,4 +1,4 @@
-package br.com.dkprojectsandroid.daisukianime;
+package br.com.dkprojectsandroid.daisukianime.classesBasicas;
 
 import java.util.ArrayList;
 import java.util.List;

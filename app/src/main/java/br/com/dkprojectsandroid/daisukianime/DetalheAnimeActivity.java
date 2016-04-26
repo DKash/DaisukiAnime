@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.parceler.Parcels;
 
+import br.com.dkprojectsandroid.daisukianime.classesBasicas.Anime;
+import br.com.dkprojectsandroid.daisukianime.fragments.DetalheAnimeFragment;
+
 public class DetalheAnimeActivity extends AppCompatActivity
 {
     //Constants

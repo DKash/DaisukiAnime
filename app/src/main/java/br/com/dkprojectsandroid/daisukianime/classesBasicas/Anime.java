@@ -1,8 +1,8 @@
-package br.com.dkprojectsandroid.daisukianime;
+package br.com.dkprojectsandroid.daisukianime.classesBasicas;
 
 import org.parceler.Parcel;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public class Anime
     private String criador;
     private String produtora;
     private String capa;
-    private List<String>fotos;
+    private LinkedList<String>fotos;
     private int episodios;
     private int ovas;
     private int classificacao;
@@ -27,7 +27,7 @@ public class Anime
     private String genero;
     private String ano;
     private double nota;
-    private Enum<Status> status;
+    private String status;
     private String sinopse;
     private boolean possuiTemporada;
     private Temporada temporada;
@@ -43,11 +43,11 @@ public class Anime
         this.criador = "";
         this.produtora = "";
         this.capa = "";
-        this.fotos = new ArrayList<>();
+        this.fotos = new LinkedList<>();
         this.fansub = "";
         this.genero = "";
         this.ano = "";
-        this.status = Status.Completo;
+        this.status = "";
         this.sinopse = "";
         this.possuiTemporada = false;
         this.temporada = new Temporada();
@@ -56,9 +56,9 @@ public class Anime
     }
 
     public Anime(int codigo, String tituloOriginal, String titulo, String criador, String produtora,
-                 String capa, List<String> fotos, int episodios, int ovas,
+                 String capa, LinkedList<String> fotos, int episodios, int ovas,
                  int classificacao, String fansub, String genero, String ano, double nota,
-                 Enum<Status> status, String sinopse, boolean possuiTemporada,
+                 String status, String sinopse, boolean possuiTemporada,
                  Temporada temporada, String audio, String legenda)
     {
         this.codigo = codigo;
@@ -153,7 +153,7 @@ public class Anime
         return fotos;
     }
 
-    public void setFotos(List<String> fotos)
+    public void setFotos(LinkedList<String> fotos)
     {
         this.fotos = fotos;
     }
@@ -228,12 +228,12 @@ public class Anime
         this.nota = nota;
     }
 
-    public Enum<Status> getStatus()
+    public String getStatus()
     {
         return status;
     }
 
-    public void setStatus(Enum<Status> status)
+    public void setStatus(String status)
     {
         this.status = status;
     }
