@@ -3,7 +3,6 @@ package br.com.dkprojectsandroid.daisukianime.classesBasicas;
 import org.parceler.Parcel;
 
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Audry Martins on 20/04/2016.
@@ -13,7 +12,7 @@ public class Anime
 {
     //Atributos
 
-    private int codigo;
+    private long codigo;
     private String tituloOriginal;
     private String titulo;
     private String criador;
@@ -29,7 +28,6 @@ public class Anime
     private double nota;
     private String status;
     private String sinopse;
-    private boolean possuiTemporada;
     private Temporada temporada;
     private String audio;
     private String legenda;
@@ -49,17 +47,16 @@ public class Anime
         this.ano = "";
         this.status = "";
         this.sinopse = "";
-        this.possuiTemporada = false;
         this.temporada = new Temporada();
         this.audio = "";
         this.legenda = "";
     }
 
-    public Anime(int codigo, String tituloOriginal, String titulo, String criador, String produtora,
+    public Anime(long codigo, String tituloOriginal, String titulo, String criador, String produtora,
                  String capa, LinkedList<String> fotos, int episodios, int ovas,
                  int classificacao, String fansub, String genero, String ano, double nota,
-                 String status, String sinopse, boolean possuiTemporada,
-                 Temporada temporada, String audio, String legenda)
+                 String status, String sinopse, Temporada temporada,
+                 String audio, String legenda)
     {
         this.codigo = codigo;
         this.tituloOriginal = tituloOriginal;
@@ -77,23 +74,19 @@ public class Anime
         this.nota = nota;
         this.status = status;
         this.sinopse = sinopse;
-        this.possuiTemporada = possuiTemporada;
         this.temporada = temporada;
         this.audio = audio;
         this.legenda = legenda;
     }
 
-    //Métodos
-
     //Gets e Sets
 
-
-    public int getCodigo()
+    public long getCodigo()
     {
         return codigo;
     }
 
-    public void setCodigo(int codigo)
+    public void setCodigo(long codigo)
     {
         this.codigo = codigo;
     }
@@ -148,7 +141,7 @@ public class Anime
         this.capa = capa;
     }
 
-    public List<String> getFotos()
+    public LinkedList<String> getFotos()
     {
         return fotos;
     }
@@ -246,16 +239,6 @@ public class Anime
     public void setSinopse(String sinopse)
     {
         this.sinopse = sinopse;
-    }
-
-    public boolean isPossuiTemporada()
-    {
-        return possuiTemporada;
-    }
-
-    public void setPossuiTemporada(boolean possuiTemporada)
-    {
-        this.possuiTemporada = possuiTemporada;
     }
 
     public Temporada getTemporada()

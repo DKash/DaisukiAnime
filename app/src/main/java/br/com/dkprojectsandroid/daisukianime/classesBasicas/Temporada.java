@@ -10,6 +10,7 @@ public class Temporada
 {
     //Atributos
 
+    private long codigo;
     private String temporada;
     private String anime;
 
@@ -23,6 +24,7 @@ public class Temporada
 
     public Temporada(String temporada, String anime)
     {
+
         this.temporada = temporada;
         this.anime = anime;
     }

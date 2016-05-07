@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  */
 public class AnimesAdapter extends ArrayAdapter<Anime>
 {
-
+    //Construtores
 
     public AnimesAdapter(Context context, List<Anime> animes)
     {

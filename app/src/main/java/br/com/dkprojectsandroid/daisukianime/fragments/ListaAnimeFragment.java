@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.dkprojectsandroid.daisukianime.AnimeClickListener;
 import br.com.dkprojectsandroid.daisukianime.AnimesAdapter;
 import br.com.dkprojectsandroid.daisukianime.R;
 import br.com.dkprojectsandroid.daisukianime.classesBasicas.Anime;
@@ -43,7 +44,6 @@ public class ListaAnimeFragment extends Fragment
 
     //Métodos
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
@@ -62,9 +62,6 @@ public class ListaAnimeFragment extends Fragment
 
         mAdapter = new AnimesAdapter(getContext(), mAnimes);
         mLvAnimes.setAdapter(mAdapter);
-
-        /*mAnimeTask = new AnimesTask();
-        mAnimeTask.execute();*/
 
         mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
@@ -113,13 +110,6 @@ public class ListaAnimeFragment extends Fragment
             AnimeClickListener listener = (AnimeClickListener) getActivity();
             listener.animeClicado(anime);
         }
-    }
-
-    //Interface
-
-    public interface AnimeClickListener
-    {
-        void animeClicado(Anime anime);
     }
 
     /*Classe AnimeTask Responsável por fazer o Download do arquivo Json do DropBox

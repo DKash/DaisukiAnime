@@ -5,8 +5,8 @@
                 android:padding="8dp">
 
     <ImageView
-        android:layout_width="72dp"
-        android:layout_height="96dp"
+        android:layout_width="48dp"
+        android:layout_height="72dp"
         android:id="@+id/imgCapa"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -20,7 +20,8 @@
         android:id="@+id/txvTitulo"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imgCapa"
-        android:layout_toEndOf="@+id/imgCapa"/>
+        android:layout_toEndOf="@+id/imgCapa"
+        android:paddingLeft="@dimen/myDimen"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,5 +31,17 @@
         android:id="@+id/txvTemporada"
         android:layout_below="@+id/txvTitulo"
         android:layout_toRightOf="@+id/imgCapa"
-        android:layout_toEndOf="@+id/imgCapa"/>
+        android:layout_toEndOf="@+id/imgCapa"
+        android:paddingLeft="@dimen/myDimen"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/txvTituloOriginal"
+        android:layout_below="@+id/txvTemporada"
+        android:layout_toRightOf="@+id/imgCapa"
+        android:layout_toEndOf="@+id/imgCapa"
+        android:paddingLeft="@dimen/myDimen"/>
 </RelativeLayout>
