@@ -26,7 +26,12 @@ public class AnimeDBHelper extends SQLiteOpenHelper
                 AnimeContract.CRIADOR + " TEXT NOT NULL, " +
                 AnimeContract.PRODUTORA + " TEXT NOT NULL, " +
                 AnimeContract.CAPA + " TEXT NOT NULL, " +
-                AnimeContract.FOTOS + " TEXT NOT NULL, " +
+                AnimeContract.FOTO1 + " TEXT NOT NULL, " +
+                AnimeContract.FOTO2 + " TEXT NOT NULL, " +
+                AnimeContract.FOTO3 + " TEXT NOT NULL, " +
+                AnimeContract.FOTO4 + " TEXT NOT NULL, " +
+                AnimeContract.FOTO5 + " TEXT NOT NULL, " +
+                AnimeContract.FOTO6 + " TEXT NOT NULL, " +
                 AnimeContract.EPISODIOS + " INTEGER NOT NULL, " +
                 AnimeContract.OVAS + " INTEGER NOT NULL, " +
                 AnimeContract.CLASSIFICACAO + " INTEGER NOT NULL, " +
@@ -36,17 +41,19 @@ public class AnimeDBHelper extends SQLiteOpenHelper
                 AnimeContract.NOTA + " REAL NOT NULL, " +
                 AnimeContract.STATUS + " TEXT NOT NULL, " +
                 AnimeContract.SINOPSE + " TEXT NOT NULL, " +
-
+                AnimeContract.TEMPORADA + " TEXT NOT NULL, " +
+                AnimeContract.ANIME + " TEXT NOT NULL, " +
                 AnimeContract.AUDIO + " TEXT NOT NULL, " +
                 AnimeContract.LEGENDA + " TEXT NOT NULL)");
     }
 
     @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        if(oldVersion == 1)
+        /*if(oldVersion == 1)
         {
             db.execSQL("DROP TABLE IF EXISTS " + AnimeContract.TABLE_NAME);
             onCreate(db);
         }
+        */
     }
 }

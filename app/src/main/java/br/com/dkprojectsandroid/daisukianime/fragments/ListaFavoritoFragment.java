@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
+import br.com.dkprojectsandroid.daisukianime.AnimeAPP;
 import br.com.dkprojectsandroid.daisukianime.AnimeClickListener;
 import br.com.dkprojectsandroid.daisukianime.AnimesAdapter;
 import br.com.dkprojectsandroid.daisukianime.DAO.AnimeDAO;
@@ -41,6 +44,7 @@ public class ListaFavoritoFragment extends Fragment
 
         mDAO = new AnimeDAO(getActivity());
         mAnimes = mDAO.listarTodos();
+        ((AnimeAPP)getActivity().getApplication()).getmEventBus().register(this);
     }
 
     @Override
@@ -65,5 +69,20 @@ public class ListaFavoritoFragment extends Fragment
             AnimeClickListener listener = (AnimeClickListener) getActivity();
             listener.animeClicado(anime);
         }
+    }
+
+    @Subscribe
+    public void atualiarListaFavoritos(Anime anime)
+    {
+        mAnimes.clear();
+        mAnimes.addAll(mDAO.listarTodos());
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        ((AnimeAPP)getActivity().getApplication()).getmEventBus().unregister(this);
     }
 }

@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import br.com.dkprojectsandroid.daisukianime.classesBasicas.Anime;
+import br.com.dkprojectsandroid.daisukianime.fragments.DetalheAnimeFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -21,6 +22,8 @@ import butterknife.ButterKnife;
  */
 public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
 {
+    DetalheAnimeFragment daf;
+
     //Construtores
 
     public AnimesDetalhesAdapter(Context context, List<Anime> animes)
@@ -39,8 +42,12 @@ public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
         if(convertView == null)
         {
             convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.item_detalhe_anime, parent, false);
+                    .inflate(R.layout.fragment_detalhe_anime, parent, false);
             viewHolder = new ViewHolder(convertView);
+
+            /*convertView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.item_detalhe_anime, parent, false);
+            viewHolder = new ViewHolder(convertView);*/
         }
         else
         {
@@ -48,13 +55,17 @@ public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
         }
 
         Glide.with(getContext()).load(anime.getCapa()).into(viewHolder.mImgCapa);
-        Glide.with(getContext()).load(anime.getClassificacao()).into(viewHolder.mImgClassifcacao);
-        Glide.with(getContext()).load(anime.getFotos().get(0)).into(viewHolder.mImgFoto01);
-        Glide.with(getContext()).load(anime.getFotos().get(1)).into(viewHolder.mImgFoto02);
-        Glide.with(getContext()).load(anime.getFotos().get(2)).into(viewHolder.mImgFoto03);
-        Glide.with(getContext()).load(anime.getFotos().get(3)).into(viewHolder.mImgFoto04);
-        Glide.with(getContext()).load(anime.getFotos().get(4)).into(viewHolder.mImgFoto05);
-        Glide.with(getContext()).load(anime.getFotos().get(5)).into(viewHolder.mImgFoto06);
+
+        daf.carregarImgClassificacao();
+
+        //Glide.with(getContext()).load(anime.getClassificacao()).into(viewHolder.mImgClassifcacao);
+
+        Glide.with(getContext()).load(anime.getFoto1()).into(viewHolder.mImgFoto01);
+        Glide.with(getContext()).load(anime.getFoto2()).into(viewHolder.mImgFoto02);
+        Glide.with(getContext()).load(anime.getFoto3()).into(viewHolder.mImgFoto03);
+        Glide.with(getContext()).load(anime.getFoto4()).into(viewHolder.mImgFoto04);
+        Glide.with(getContext()).load(anime.getFoto5()).into(viewHolder.mImgFoto05);
+        Glide.with(getContext()).load(anime.getFoto6()).into(viewHolder.mImgFoto06);
 
         viewHolder.mTxvTitulo.setText(anime.getTitulo());
         viewHolder.mTxvResultadoTituloOriginal.setText(anime.getTituloOriginal());
@@ -67,7 +78,8 @@ public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
         viewHolder.mTxvResultadoGenero.setText(anime.getGenero());
         viewHolder.mTxvResultadoAno.setText(anime.getAno());
         viewHolder.mTxvResultadoStatus.setText(anime.getStatus());
-        viewHolder.mTxvResultadoTemporada.setText(anime.getTemporada().getTemporada());
+        viewHolder.mTxvResultadoTemporada.setText(anime.getTemporada());
+        viewHolder.mTxvResultadoTemporada.setText(anime.getAnime());
         viewHolder.getmTxvResultadoAudio.setText(anime.getAudio());
         viewHolder.mTxvResultadoLegenda.setText(anime.getLegenda());
 
@@ -119,6 +131,8 @@ public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
         TextView mTxvNota;
         @Bind(R.id.txvResultadoTemporada)
         TextView mTxvResultadoTemporada;
+        @Bind(R.id.txvResultadoAnime)
+        TextView mTxvResultadoAnime;
         @Bind(R.id.txvResultadoAudio)
         TextView getmTxvResultadoAudio;
         @Bind(R.id.txvResultadoLegenda)

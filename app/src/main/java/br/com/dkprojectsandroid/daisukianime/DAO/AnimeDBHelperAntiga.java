@@ -1,12 +1,15 @@
+/*
 package br.com.dkprojectsandroid.daisukianime.DAO;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+*/
 /**
  * Created by Audry Martins on 04/05/2016.
- */
+ *//*
+
 public class AnimeDBHelperAntiga extends SQLiteOpenHelper
 {
     public static final int VERSAO_BANCODADOS = 1;
@@ -60,4 +63,4 @@ public class AnimeDBHelperAntiga extends SQLiteOpenHelper
             onCreate(db);
         }
     }
-}
+}*/

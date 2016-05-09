@@ -2,8 +2,6 @@ package br.com.dkprojectsandroid.daisukianime.classesBasicas;
 
 import org.parceler.Parcel;
 
-import java.util.LinkedList;
-
 /**
  * Created by Audry Martins on 20/04/2016.
  */
@@ -18,7 +16,12 @@ public class Anime
     private String criador;
     private String produtora;
     private String capa;
-    private LinkedList<String>fotos;
+    private String foto1;
+    private String foto2;
+    private String foto3;
+    private String foto4;
+    private String foto5;
+    private String foto6;
     private int episodios;
     private int ovas;
     private int classificacao;
@@ -28,7 +31,8 @@ public class Anime
     private double nota;
     private String status;
     private String sinopse;
-    private Temporada temporada;
+    private String temporada;
+    private String anime;
     private String audio;
     private String legenda;
 
@@ -41,22 +45,29 @@ public class Anime
         this.criador = "";
         this.produtora = "";
         this.capa = "";
-        this.fotos = new LinkedList<>();
+        this.foto1 = "";
+        this.foto2 = "";
+        this.foto3 = "";
+        this.foto4 = "";
+        this.foto5 = "";
+        this.foto6 = "";
         this.fansub = "";
         this.genero = "";
         this.ano = "";
         this.status = "";
         this.sinopse = "";
-        this.temporada = new Temporada();
+        this.temporada ="";
+        this.anime = "";
         this.audio = "";
         this.legenda = "";
     }
 
-    public Anime(long codigo, String tituloOriginal, String titulo, String criador, String produtora,
-                 String capa, LinkedList<String> fotos, int episodios, int ovas,
-                 int classificacao, String fansub, String genero, String ano, double nota,
-                 String status, String sinopse, Temporada temporada,
-                 String audio, String legenda)
+    public Anime(long codigo, String tituloOriginal, String titulo, String criador,
+                 String produtora, String capa, String foto1, String foto2, String foto3,
+                 String foto4, String foto5, String foto6, int episodios, int ovas,
+                 int classificacao,
+                 String fansub, String genero, String ano, double nota, String status,
+                 String sinopse, String temporada, String anime, String audio, String legenda)
     {
         this.codigo = codigo;
         this.tituloOriginal = tituloOriginal;
@@ -64,7 +75,12 @@ public class Anime
         this.criador = criador;
         this.produtora = produtora;
         this.capa = capa;
-        this.fotos = fotos;
+        this.foto1 = foto1;
+        this.foto2 = foto2;
+        this.foto3 = foto3;
+        this.foto4 = foto4;
+        this.foto5 = foto5;
+        this.foto6 = foto6;
         this.episodios = episodios;
         this.ovas = ovas;
         this.classificacao = classificacao;
@@ -75,6 +91,7 @@ public class Anime
         this.status = status;
         this.sinopse = sinopse;
         this.temporada = temporada;
+        this.anime = anime;
         this.audio = audio;
         this.legenda = legenda;
     }
@@ -141,14 +158,64 @@ public class Anime
         this.capa = capa;
     }
 
-    public LinkedList<String> getFotos()
+    public String getFoto1()
     {
-        return fotos;
+        return foto1;
     }
 
-    public void setFotos(LinkedList<String> fotos)
+    public void setFoto1(String foto1)
     {
-        this.fotos = fotos;
+        this.foto1 = foto1;
+    }
+
+    public String getFoto2()
+    {
+        return foto2;
+    }
+
+    public void setFoto2(String foto2)
+    {
+        this.foto2 = foto2;
+    }
+
+    public String getFoto3()
+    {
+        return foto3;
+    }
+
+    public void setFoto3(String foto3)
+    {
+        this.foto3 = foto3;
+    }
+
+    public String getFoto4()
+    {
+        return foto4;
+    }
+
+    public void setFoto4(String foto4)
+    {
+        this.foto4 = foto4;
+    }
+
+    public String getFoto5()
+    {
+        return foto5;
+    }
+
+    public void setFoto5(String foto5)
+    {
+        this.foto5 = foto5;
+    }
+
+    public String getFoto6()
+    {
+        return foto6;
+    }
+
+    public void setFoto6(String foto6)
+    {
+        this.foto6 = foto6;
     }
 
     public int getEpisodios()
@@ -241,14 +308,24 @@ public class Anime
         this.sinopse = sinopse;
     }
 
-    public Temporada getTemporada()
+    public String getTemporada()
     {
         return temporada;
     }
 
-    public void setTemporada(Temporada temporada)
+    public void setTemporada(String temporada)
     {
         this.temporada = temporada;
+    }
+
+    public String getAnime()
+    {
+        return anime;
+    }
+
+    public void setAnime(String anime)
+    {
+        this.anime = anime;
     }
 
     public String getAudio()

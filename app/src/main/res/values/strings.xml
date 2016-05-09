@@ -15,4 +15,7 @@
     <string name="legenda">Legenda:</string>
     <string name="abaWeb">Web</string>
     <string name="abaFavoritos">Favoritos</string>
+    <string name="anime">Anime:</string>
+    <string name="detalheActivityTitulo">Detalhes do Anime</string>
+    <string name="formatoAno">Ano: %1$d</string>
 </resources>

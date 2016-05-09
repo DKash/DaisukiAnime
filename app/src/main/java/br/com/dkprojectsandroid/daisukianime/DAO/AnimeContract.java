@@ -10,7 +10,6 @@ public interface AnimeContract extends BaseColumns
     //Nome da tabela do Banco de Dados
 
     String TABLE_NAME = "animes";
-    String TABLE_TEMPORADA = "temporada";
 
     //Atributos da tabela "Animes"
 
@@ -19,7 +18,12 @@ public interface AnimeContract extends BaseColumns
     String CRIADOR = "criador";
     String PRODUTORA = "produtora";
     String CAPA = "capa";
-    String FOTOS = "fotos";
+    String FOTO1 = "foto1";
+    String FOTO2 = "foto2";
+    String FOTO3 = "foto3";
+    String FOTO4 = "foto4";
+    String FOTO5 = "foto5";
+    String FOTO6 = "foto6";
     String EPISODIOS = "episodios";
     String OVAS = "ovas";
     String CLASSIFICACAO = "classificacao";
@@ -29,10 +33,8 @@ public interface AnimeContract extends BaseColumns
     String NOTA = "nota";
     String STATUS = "status";
     String SINOPSE = "sinopse";
-    String IDTEMPORADA = "_id";
-    String IDTEMPORADAANIME = "idtemporada";
-    String TEMPORADA = "temptemporada";
-    String TEMP_ANIME = "anime";
+    String TEMPORADA = "temporada";
+    String ANIME = "anime";
     String AUDIO = "audio";
     String LEGENDA = "legenda";
 }

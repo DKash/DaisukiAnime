@@ -47,7 +47,7 @@ public class AnimesAdapter extends ArrayAdapter<Anime>
 
         Glide.with(getContext()).load(anime.getCapa()).into(viewHolder.mImgCapa);
         viewHolder.mTxvTitulo.setText(anime.getTitulo());
-        viewHolder.mTxvTemporada.setText(anime.getTemporada().getTemporada());
+        viewHolder.mTxvTemporada.setText(anime.getTemporada());
 
         return convertView;
     }

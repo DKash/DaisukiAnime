@@ -1,7 +1,10 @@
 package br.com.dkprojectsandroid.daisukianime.fragments;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +16,13 @@ import com.bumptech.glide.Glide;
 
 import org.parceler.Parcels;
 
+import br.com.dkprojectsandroid.daisukianime.AnimeAPP;
+import br.com.dkprojectsandroid.daisukianime.DAO.AnimeDAO;
 import br.com.dkprojectsandroid.daisukianime.R;
 import br.com.dkprojectsandroid.daisukianime.classesBasicas.Anime;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class DetalheAnimeFragment extends Fragment
 {
@@ -34,6 +40,7 @@ public class DetalheAnimeFragment extends Fragment
     TextView mTxvCriador;
     @Bind(R.id.txvResultadoProdutora)
     TextView mTxvProdutora;
+
     @Bind(R.id.imgCapa)
     ImageView mImgCapa;
     @Bind(R.id.imgFoto01)
@@ -48,12 +55,13 @@ public class DetalheAnimeFragment extends Fragment
     ImageView mFoto5;
     @Bind(R.id.imgFoto06)
     ImageView mFoto6;
+
     @Bind(R.id.txvResultadoEpisodios)
     TextView mTxvEpisodios;
     @Bind(R.id.txvResultadoOvas)
     TextView mTxvOvas;
     @Bind(R.id.imgClassificacao)
-    TextView mTxvClassificacao;
+    ImageView mImgClassificacao;
     @Bind(R.id.txvResultadoFansub)
     TextView mTxvFansub;
     @Bind(R.id.txvResultadoGenero)
@@ -68,10 +76,16 @@ public class DetalheAnimeFragment extends Fragment
     TextView mTxvSinopse;
     @Bind(R.id.txvResultadoTemporada)
     TextView mTxvTemporada;
+    @Bind(R.id.txvResultadoAnime)
+    TextView mTxvAnime;
     @Bind(R.id.txvResultadoAudio)
     TextView mTxvAudio;
     @Bind(R.id.txvResultadoLegenda)
     TextView mTxvLegenda;
+    @Bind(R.id.fabFavorito)
+    FloatingActionButton mFabFavorito;
+
+    AnimeDAO mDAO;
 
     private Anime mAnime;
 
@@ -92,6 +106,9 @@ public class DetalheAnimeFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        mDAO = new AnimeDAO(getActivity());
+
         if (getArguments() != null)
         {
             Parcelable p = getArguments().getParcelable(EXTRA_ANIME);
@@ -107,37 +124,78 @@ public class DetalheAnimeFragment extends Fragment
 
         //Exibe com o ButterF=Knife os atributos do anime no Fragment
 
-        ButterKnife.bind(getActivity(), view);
+        ButterKnife.bind(this, view);
 
-        mTxvTituloOriginal.append(mAnime.getTituloOriginal().toString());
-
-        //mTxvTituloOriginal.setText(mAnime.getTituloOriginal());
+        mTxvTituloOriginal.setText(mAnime.getTituloOriginal());
         mTxvTitulo.setText(mAnime.getTitulo());
         mTxvCriador.setText(mAnime.getCriador());
         mTxvProdutora.setText(mAnime.getProdutora());
 
         Glide.with(getActivity()).load(mAnime.getCapa()).into(mImgCapa);
-        Glide.with(getActivity()).load(mAnime.getFotos().get(0)).into(mFoto1);
-        Glide.with(getActivity()).load(mAnime.getFotos().get(1)).into(mFoto2);
-        Glide.with(getActivity()).load(mAnime.getFotos().get(2)).into(mFoto3);
-        Glide.with(getActivity()).load(mAnime.getFotos().get(3)).into(mFoto4);
-        Glide.with(getActivity()).load(mAnime.getFotos().get(4)).into(mFoto5);
-        Glide.with(getActivity()).load(mAnime.getFotos().get(5)).into(mFoto6);
+        Glide.with(getActivity()).load(mAnime.getFoto1()).into(mFoto1);
+        Glide.with(getActivity()).load(mAnime.getFoto2()).into(mFoto2);
+        Glide.with(getActivity()).load(mAnime.getFoto3()).into(mFoto3);
+        Glide.with(getActivity()).load(mAnime.getFoto4()).into(mFoto4);
+        Glide.with(getActivity()).load(mAnime.getFoto5()).into(mFoto5);
+        Glide.with(getActivity()).load(mAnime.getFoto6()).into(mFoto6);
 
-        mTxvEpisodios.setText(mAnime.getEpisodios());
-        mTxvOvas.setText(mAnime.getOvas());
-        mTxvClassificacao.setText(mAnime.getClassificacao());
+        mTxvEpisodios.setText(String.valueOf(mAnime.getEpisodios()));
+        mTxvOvas.setText(String.valueOf(mAnime.getOvas()));
+
+        carregarImgClassificacao();
+
         mTxvFansub.setText(mAnime.getFansub());
         mTxvGenero.setText(mAnime.getGenero());
         mTxvAno.setText(mAnime.getAno());
         mTxvNota.setText(String.valueOf(mAnime.getNota()));
         mTxvStatus.setText(mAnime.getStatus());
         mTxvSinopse.setText(mAnime.getSinopse());
-        mTxvTemporada.setText(mAnime.getTemporada().getTemporada());
+        mTxvTemporada.setText(mAnime.getTemporada());
+        mTxvAnime.setText(mAnime.getAnime());
         mTxvAudio.setText(mAnime.getAudio());
         mTxvLegenda.setText(mAnime.getLegenda());
 
+        toogleFavorito();
+
         return view;
+    }
+
+    @OnClick(R.id.fabFavorito)
+    public void favoritoClick()
+    {
+        boolean favorito = mDAO.isFavorito(mAnime);
+
+        if(favorito)
+        {
+            mDAO.excluir(mAnime);
+        }
+        else
+        {
+            mDAO.inserir(mAnime);
+        }
+        toogleFavorito();
+        ((AnimeAPP)getActivity().getApplication()).getmEventBus().post(mAnime);
+    }
+
+    private void toogleFavorito()
+    {
+        boolean favorito = mDAO.isFavorito(mAnime);
+
+        int resultado;
+        int color;
+
+        if(favorito)
+        {
+            color = Color.RED;
+            resultado = R.drawable.ic_remove;
+        }
+        else
+        {
+            color = Color.BLUE;
+            resultado = R.drawable.ic_add;
+        }
+        mFabFavorito.setImageResource(resultado);
+        mFabFavorito.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 
     @Override
@@ -145,5 +203,29 @@ public class DetalheAnimeFragment extends Fragment
     {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    public void carregarImgClassificacao()
+    {
+        int classificacao = mAnime.getClassificacao();
+
+        switch (classificacao)
+        {
+            case 10:
+                Glide.with(getActivity()).load(R.drawable.classificacao_10anos).into(mImgClassificacao);
+                break;
+            case 12:
+                Glide.with(getActivity()).load(R.drawable.classificacao_12anos).into(mImgClassificacao);
+                break;
+            case 14:
+                Glide.with(getActivity()).load(R.drawable.classificacao_14anos).into(mImgClassificacao);
+                break;
+            case 16:
+                Glide.with(getActivity()).load(R.drawable.classificacao_16anos).into(mImgClassificacao);
+                break;
+            case 18:
+                Glide.with(getActivity()).load(R.drawable.classificacao_18anos).into(mImgClassificacao);
+                break;
+        }
     }
 }
