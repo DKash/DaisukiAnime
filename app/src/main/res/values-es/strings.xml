@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Daisuki Anime</string>
+    <string name="tituloOriginal">Título Original:</string>
+    <string name="fansub">Fansub:</string>
+    <string name="criador">Creador:</string>
+    <string name="produtora">Productor:</string>
+    <string name="episodios">Episodios:</string>
+    <string name="genero">Género:</string>
+    <string name="ano">Año:</string>
+    <string name="status">Estatus:</string>
+    <string name="ovas">Polaina:</string>
+    <string name="sinopse">Sinopsis:</string>
+    <string name="temporada">Temporada:</string>
+    <string name="audio">Audio:</string>
+    <string name="legenda">Leyenda:</string>
+    <string name="abaWeb">Web</string>
+    <string name="abaFavoritos">Favoritos</string>
+    <string name="anime">Anime:</string>
+    <string name="detalheActivityTitulo">Detalles Anime</string>
+</resources>

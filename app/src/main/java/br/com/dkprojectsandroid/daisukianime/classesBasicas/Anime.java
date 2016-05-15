@@ -56,7 +56,7 @@ public class Anime
         this.ano = "";
         this.status = "";
         this.sinopse = "";
-        this.temporada ="";
+        this.temporada = "";
         this.anime = "";
         this.audio = "";
         this.legenda = "";

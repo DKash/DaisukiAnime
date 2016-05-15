@@ -11,6 +11,7 @@ import br.com.dkprojectsandroid.daisukianime.fragments.DetalheAnimeFragment;
 public class DetalheAnimeActivity extends AppCompatActivity
 {
     //Constants
+
     public static final String EXTRA_ANIME = "anime";
 
     //Atributos

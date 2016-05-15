@@ -42,6 +42,8 @@ public class ListaAnimeFragment extends Fragment
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipe;
 
+    Request request;
+
     //Métodos
 
     @Override
@@ -131,9 +133,44 @@ public class ListaAnimeFragment extends Fragment
         {
             OkHttpClient client = new OkHttpClient();
 
-            Request request =  new Request.Builder()
+            String url_EN = "https://dl.dropbox.com/s/fe8ixyytephw7rs/DaisukiAnime%20Projeto%20Json%20English.txt?dl=0";
+            String url_DE = "https://dl.dropbox.com/s/snkrhupl12h0kkx/DaisukiAnime%20Projeto%20Json%20Deutch.txt?dl=0";
+            String url_ES = "https://dl.dropbox.com/s/zf048pnnorvz7aq/DaisukiAnime%20Projeto%20Json%20Spanish.txt?dl=0";
+            String url_FR = "https://dl.dropbox.com/s/8h4e5e73380xu71/DaisukiAnime%20Projeto%20Json%20French.txt?dl=0";
+            String url_JA = "https://dl.dropbox.com/s/8geglrcz12n3mq4/DaisukiAnime%20Projeto%20Json%20Japanese.txt?dl=0";
+            String url_PT = "https://dl.dropbox.com/s/0umxxajscxg2v2q/DaisukiAnime%20Projeto%20Json.txt?dl=0";
+
+            String language = getResources().getConfiguration().locale.getLanguage();
+
+            if(language.equals("en"))
+            {
+                baixarJson(url_EN);
+            }
+            else if(language.equals("es"))
+            {
+                baixarJson(url_ES);
+            }
+            else if(language.equals("fr"))
+            {
+                baixarJson(url_FR);
+            }
+            else if(language.equals("de"))
+            {
+                baixarJson(url_DE);
+            }
+            else if(language.equals("ja"))
+            {
+                baixarJson(url_JA);
+            }
+            else
+            {
+              //baixarJson(url_EN);
+                baixarJson(url_PT);
+            }
+
+            /*Request request =  new Request.Builder()
                     .url("https://dl.dropbox.com/s/0umxxajscxg2v2q/DaisukiAnime%20Projeto%20Json.txt?dl=0")
-                    .build();
+                    .build();*/
 
             try
             {
@@ -164,6 +201,13 @@ public class ListaAnimeFragment extends Fragment
                 mAdapter.notifyDataSetChanged();
             }
             mSwipe.setRefreshing(false);
+        }
+
+        public void baixarJson(String url)
+        {
+            request =  new Request.Builder()
+                    .url(url)
+                    .build();
         }
     }
 }

@@ -120,7 +120,7 @@ public class DetalheAnimeFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_detalhe_anime, container, false);
+        View view = inflater.inflate(R.layout.alternativo2_fragment_detalhe_anime, container, false);
 
         //Exibe com o ButterF=Knife os atributos do anime no Fragment
 
@@ -128,6 +128,7 @@ public class DetalheAnimeFragment extends Fragment
 
         mTxvTituloOriginal.setText(mAnime.getTituloOriginal());
         mTxvTitulo.setText(mAnime.getTitulo());
+        mTxvTitulo.setTextColor(ColorStateList.valueOf(Color.WHITE));
         mTxvCriador.setText(mAnime.getCriador());
         mTxvProdutora.setText(mAnime.getProdutora());
 
@@ -183,6 +184,7 @@ public class DetalheAnimeFragment extends Fragment
 
         int resultado;
         int color;
+        int colorTint;
 
         if(favorito)
         {

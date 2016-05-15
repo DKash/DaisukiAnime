@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Daisuki Anime</string>
+    <string name="tituloOriginal">Titre Original:</string>
+    <string name="fansub">Fansub:</string>
+    <string name="criador">Créateur:</string>
+    <string name="produtora">Producteur:</string>
+    <string name="episodios">Épisodes:</string>
+    <string name="genero">Genre:</string>
+    <string name="ano">Année:</string>
+    <string name="status">Statut:</string>
+    <string name="ovas">Prise de Bec:</string>
+    <string name="sinopse">Synopsis:</string>
+    <string name="temporada">Saison:</string>
+    <string name="audio">Acoustique:</string>
+    <string name="legenda">Légende:</string>
+    <string name="abaWeb">Réseau</string>
+    <string name="abaFavoritos">Favoris</string>
+    <string name="anime">Anime:</string>
+    <string name="detalheActivityTitulo">Détails Anime</string>
+</resources>

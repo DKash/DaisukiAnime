@@ -24,7 +24,6 @@ public class Estudio
         this.animes = animes;
     }
 
-
     //Métodos
 
     //Gets e Sets

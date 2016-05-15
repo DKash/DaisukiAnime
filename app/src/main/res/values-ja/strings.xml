@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">だいすきアニメ</string>
+    <string name="tituloOriginal">オリジナルタイトル:</string>
+    <string name="fansub">ファンサブ:</string>
+    <string name="criador">クリエイター:</string>
+    <string name="produtora">プロデューサー:</string>
+    <string name="episodios">エピソード:</string>
+    <string name="genero">ジャンル:</string>
+    <string name="ano">年:</string>
+    <string name="status">状況:</string>
+    <string name="ovas">ささいなけんか:</string>
+    <string name="sinopse">概要:</string>
+    <string name="temporada">シーズン:</string>
+    <string name="audio">オーディオ:</string>
+    <string name="legenda">サブタイトル:</string>
+    <string name="abaWeb">ウェブ</string>
+    <string name="abaFavoritos">お気に入りに</string>
+    <string name="anime">アニメ:</string>
+    <string name="detalheActivityTitulo">詳細アニメ</string>
+</resources>
