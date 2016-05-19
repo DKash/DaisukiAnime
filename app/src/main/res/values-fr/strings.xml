@@ -17,4 +17,16 @@
     <string name="abaFavoritos">Favoris</string>
     <string name="anime">Anime:</string>
     <string name="detalheActivityTitulo">Détails Anime</string>
+    <string name="screenshot06">Screenshot06</string>
+    <string name="screenshot05">Screenshot05</string>
+    <string name="screenshot04">Screenshot04</string>
+    <string name="screenshot03">Screenshot03</string>
+    <string name="screenshot02">Screenshot02</string>
+    <string name="screenshot01">Screenshot01</string>
+    <string name="imageclassification">ImageClassification</string>
+    <string name="imagecapa">ImageCapa</string>
+    <string name="compartilhar">Compartilhar</string>
+    <string name="share_message">Eu gostei muito desse anime 1$s, você também irá gostar, assista.</string>
+    <string name="no_conection">Sem Conexão no momento</string>
+    <string name="empty_list">Sem dados para exibir no momento. Verifique sua conexão.</string>
 </resources>

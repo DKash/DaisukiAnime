@@ -29,6 +29,8 @@ public class ListaFavoritoFragment extends Fragment
 
     @Bind(R.id.list_anime)
     ListView mLvAnimes;
+    @Bind(R.id.empty)
+    View mEmpty;
 
     List<Anime> mAnimes;
     ArrayAdapter<Anime> mAdapter;
@@ -53,6 +55,9 @@ public class ListaFavoritoFragment extends Fragment
     {
         View layout = inflater.inflate(R.layout.fragment_lista_favorito, container, false);
         ButterKnife.bind(this, layout);
+
+
+        mLvAnimes.setEmptyView(mEmpty);
 
         mAdapter = new AnimesAdapter(getContext(), mAnimes);
         mLvAnimes.setAdapter(mAdapter);

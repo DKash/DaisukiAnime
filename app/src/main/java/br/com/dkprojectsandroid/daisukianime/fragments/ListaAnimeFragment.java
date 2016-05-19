@@ -1,5 +1,8 @@
 package br.com.dkprojectsandroid.daisukianime.fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -42,6 +46,9 @@ public class ListaAnimeFragment extends Fragment
     @Bind(R.id.swipe)
     SwipeRefreshLayout mSwipe;
 
+    @Bind(R.id.empty)
+    View mEmpty;
+
     Request request;
 
     //Métodos
@@ -65,12 +72,13 @@ public class ListaAnimeFragment extends Fragment
         mAdapter = new AnimesAdapter(getContext(), mAnimes);
         mLvAnimes.setAdapter(mAdapter);
 
+        mLvAnimes.setEmptyView(mEmpty);
+
         mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
         {
             @Override public void onRefresh()
             {
-                mAnimeTask = new AnimesTask();
-                mAnimeTask.execute();
+                iniciarTask();
             }
         });
         return layout;
@@ -83,12 +91,30 @@ public class ListaAnimeFragment extends Fragment
 
         if(mAnimes.size() == 0 && mAnimeTask == null)
         {
-            mAnimeTask = new AnimesTask();
-            mAnimeTask.execute();
+            iniciarTask();
         }
         else if(mAnimeTask != null && mAnimeTask.getStatus() == AsyncTask.Status.RUNNING)
         {
             showProgress();
+        }
+    }
+
+    private void iniciarTask()
+    {
+        ConnectivityManager cm = (ConnectivityManager)getActivity()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        if(info != null && info.isConnected())
+        {
+            mAnimeTask = new AnimesTask();
+            mAnimeTask.execute();
+        }
+        else
+        {
+            mSwipe.setRefreshing(false);
+            Toast.makeText(getActivity(),
+                    getString(R.string.no_conection),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -142,9 +168,9 @@ public class ListaAnimeFragment extends Fragment
 
             String language = getResources().getConfiguration().locale.getLanguage();
 
-            if(language.equals("en"))
+            if(language.equals("pt"))
             {
-                baixarJson(url_EN);
+                baixarJson(url_PT);
             }
             else if(language.equals("es"))
             {
@@ -164,8 +190,7 @@ public class ListaAnimeFragment extends Fragment
             }
             else
             {
-              //baixarJson(url_EN);
-                baixarJson(url_PT);
+                baixarJson(url_EN);
             }
 
             /*Request request =  new Request.Builder()
@@ -201,6 +226,12 @@ public class ListaAnimeFragment extends Fragment
                 mAdapter.notifyDataSetChanged();
             }
             mSwipe.setRefreshing(false);
+
+            if(getResources().getBoolean(R.bool.tablet)
+            && mAnimes.size() > 0)
+            {
+                onItemClick(0);
+            }
         }
 
         public void baixarJson(String url)

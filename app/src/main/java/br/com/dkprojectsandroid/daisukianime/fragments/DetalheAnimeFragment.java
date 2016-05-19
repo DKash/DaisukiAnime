@@ -1,12 +1,21 @@
 package br.com.dkprojectsandroid.daisukianime.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,6 +38,7 @@ public class DetalheAnimeFragment extends Fragment
     //Constantes
 
     private static final String EXTRA_ANIME = "param1";
+    public static final String SHARE_MESSAGE = "share_message";
 
     //Atributos
 
@@ -88,6 +98,7 @@ public class DetalheAnimeFragment extends Fragment
     AnimeDAO mDAO;
 
     private Anime mAnime;
+    private ShareActionProvider mShareActionProvider;
 
     public static DetalheAnimeFragment newInstance(Anime anime)
     {
@@ -114,13 +125,14 @@ public class DetalheAnimeFragment extends Fragment
             Parcelable p = getArguments().getParcelable(EXTRA_ANIME);
             mAnime = Parcels.unwrap(p);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.alternativo2_fragment_detalhe_anime, container, false);
+        View view = inflater.inflate(R.layout.fragment_detalhe_anime, container, false);
 
         //Exibe com o ButterF=Knife os atributos do anime no Fragment
 
@@ -158,6 +170,17 @@ public class DetalheAnimeFragment extends Fragment
 
         toogleFavorito();
 
+        boolean favorito = mDAO.isFavorito(mAnime);
+
+        if(favorito)
+        {
+            iniciarAnimacaoFABFixa(true);
+        }
+        else
+        {
+            iniciarAnimacaoFABFixa(false);
+        }
+
         return view;
     }
 
@@ -165,17 +188,72 @@ public class DetalheAnimeFragment extends Fragment
     public void favoritoClick()
     {
         boolean favorito = mDAO.isFavorito(mAnime);
+        boolean opcao;
 
         if(favorito)
         {
             mDAO.excluir(mAnime);
+            opcao = false;
         }
         else
         {
             mDAO.inserir(mAnime);
+            opcao = true;
+        }
+
+        /*Faz com que o Float Action Button fique com metade ou não do seu tamanho
+        de acordo com o estado do objeto anime no banco de dados. Caso seja favorito
+        ele mostrará o botão com a metade do seu tamanho e ccaso não seja favorito,
+        ele mostrará o botão no seu tamanho normal.*/
+
+        iniciarAnimacaoFABFixa(opcao);
+
+        //Enquanto que esse metodo abaixo fará a animação de diminuir a zero e retornar
+        //ao seu tamanho normal sem deixar o botão pequeno.
+
+        //iniciarAnimacaoFAB();
+
+        ((AnimeAPP)getActivity().getApplication()).getmEventBus().post(mAnime);
+    }
+
+    private void iniciarAnimacaoFABFixa(boolean opcao)
+    {
+        if(opcao == true)
+        {
+            mFabFavorito.animate()
+                    .scaleX(0.5f)
+                    .scaleY(0.5f)
+                    .setStartDelay(10);
+        }
+        else
+        {
+            mFabFavorito.animate()
+                    .scaleX(1)
+                    .scaleY(1)
+                    .setStartDelay(10);
         }
         toogleFavorito();
-        ((AnimeAPP)getActivity().getApplication()).getmEventBus().post(mAnime);
+        Log.d("ASM", "toogle");
+    }
+
+    private void iniciarAnimacaoFAB()
+    {
+        mFabFavorito.animate()
+                .scaleX(0)
+                .scaleY(0)
+                .setListener(new AnimatorListenerAdapter()
+                {
+                    @Override public void onAnimationEnd(Animator animation)
+                    {
+                        super.onAnimationEnd(animation);
+                        toogleFavorito();
+                        mFabFavorito.animate()
+                                .scaleX(1)
+                                .scaleY(1)
+                                .setListener(null);
+                    }
+                });
+        toogleFavorito();
     }
 
     private void toogleFavorito()
@@ -184,7 +262,6 @@ public class DetalheAnimeFragment extends Fragment
 
         int resultado;
         int color;
-        int colorTint;
 
         if(favorito)
         {
@@ -196,15 +273,9 @@ public class DetalheAnimeFragment extends Fragment
             color = Color.BLUE;
             resultado = R.drawable.ic_add;
         }
+
         mFabFavorito.setImageResource(resultado);
         mFabFavorito.setBackgroundTintList(ColorStateList.valueOf(color));
-    }
-
-    @Override
-    public void onDestroyView()
-    {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     public void carregarImgClassificacao()
@@ -229,5 +300,33 @@ public class DetalheAnimeFragment extends Fragment
                 Glide.with(getActivity()).load(R.drawable.classificacao_18anos).into(mImgClassificacao);
                 break;
         }
+    }
+
+    @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.menu_detalhe, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_item_compartilhar);
+
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
+        String message = getString(R.string.share_message) + " " +
+                mAnime.getTitulo() + ", " + getString(R.string.share_message_cont) + ".";
+
+        Intent it = new Intent(Intent.ACTION_SEND);
+        it.setType("text/plain");
+        it.putExtra(Intent.EXTRA_SUBJECT, mAnime.getTituloOriginal());
+        it.putExtra(Intent.EXTRA_TEXT, message);
+
+        mShareActionProvider.setShareIntent(it);
+    }
+
+    @Override
+    public void onDestroyView()
+    {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

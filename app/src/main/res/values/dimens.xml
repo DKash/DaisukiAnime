@@ -4,9 +4,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="myDimen">8dp</dimen>
     <dimen name="spaceText">4dp</dimen>
-    <dimen name="imgCapa">220dp</dimen>
+    <dimen name="imgCapaHeight">220dp</dimen>
+    <dimen name="imgCapaWidth">152dp</dimen>
     <dimen name="image_width">48dp</dimen>
     <dimen name="image_height">72dp</dimen>
     <dimen name="foto_width">90dp</dimen>
     <dimen name="foto_heigth">50dp</dimen>
+    <dimen name="foto_space">10dp</dimen>
+    <dimen name="layout_fab_favorito_space">60dp</dimen>
 </resources>
