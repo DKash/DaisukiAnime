@@ -23,11 +23,11 @@
     <string name="screenshot03">Screenshot03</string>
     <string name="screenshot02">Screenshot02</string>
     <string name="screenshot01">Screenshot01</string>
-    <string name="imageclassification">ImageClassification</string>
-    <string name="imagecapa">ImageCapa</string>
-    <string name="compartilhar">Compartilhar</string>
-    <string name="share_message">Eu gostei muito desse anime</string>
-    <string name="share_message_cont">você também irá gostar, assista!</string>
-    <string name="no_conection">Sem Conexão no momento</string>
-    <string name="empty_list">Sem dados para exibir no momento.</string>
+    <string name="imageclassification">Rating Image</string>
+    <string name="imagecapa">Cover image</string>
+    <string name="compartilhar">Share</string>
+    <string name="share_message">I loved this anime</string>
+    <string name="share_message_cont">also you will love, watch!</string>
+    <string name="no_conection">No connection at the moment</string>
+    <string name="empty_list">There is no data to display at the moment.</string>
 </resources>

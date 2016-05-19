@@ -10,6 +10,9 @@
     <dimen name="image_height">72dp</dimen>
     <dimen name="foto_width">90dp</dimen>
     <dimen name="foto_heigth">50dp</dimen>
+    <dimen name="foto_width_large">120dp</dimen>
+    <dimen name="foto_heigth_large">80dp</dimen>
     <dimen name="foto_space">10dp</dimen>
     <dimen name="layout_fab_favorito_space">60dp</dimen>
+    <dimen name="botton_space">30dp</dimen>
 </resources>
