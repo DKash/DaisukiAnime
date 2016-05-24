@@ -30,4 +30,6 @@
     <string name="share_message_cont">También le encantará, ver!</string>
     <string name="no_conection">No hay conexión en el momento</string>
     <string name="empty_list">no hay datos para mostrar en este momento.</string>
+    <string name="email">contact_us@daisukianime.com</string>
+    <string name="phone">+55 (81) 9 9764-4502</string>
 </resources>

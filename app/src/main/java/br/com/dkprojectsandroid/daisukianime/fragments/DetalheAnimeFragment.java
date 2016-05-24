@@ -1,7 +1,5 @@
 package br.com.dkprojectsandroid.daisukianime.fragments;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -11,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,7 +35,6 @@ public class DetalheAnimeFragment extends Fragment
     //Constantes
 
     private static final String EXTRA_ANIME = "param1";
-    public static final String SHARE_MESSAGE = "share_message";
 
     //Atributos
 
@@ -134,7 +130,7 @@ public class DetalheAnimeFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_detalhe_anime, container, false);
 
-        //Exibe com o ButterF=Knife os atributos do anime no Fragment
+        //Exibe com o ButterKnife os atributos do anime no Fragment
 
         ButterKnife.bind(this, view);
 
@@ -208,17 +204,12 @@ public class DetalheAnimeFragment extends Fragment
 
         iniciarAnimacaoFABFixa(opcao);
 
-        //Enquanto que esse metodo abaixo fará a animação de diminuir a zero e retornar
-        //ao seu tamanho normal sem deixar o botão pequeno.
-
-        //iniciarAnimacaoFAB();
-
         ((AnimeAPP)getActivity().getApplication()).getmEventBus().post(mAnime);
     }
 
     private void iniciarAnimacaoFABFixa(boolean opcao)
     {
-        if(opcao == true)
+        if(opcao)
         {
             mFabFavorito.animate()
                     .scaleX(0.5f)
@@ -232,27 +223,6 @@ public class DetalheAnimeFragment extends Fragment
                     .scaleY(1)
                     .setStartDelay(10);
         }
-        toogleFavorito();
-        Log.d("ASM", "toogle");
-    }
-
-    private void iniciarAnimacaoFAB()
-    {
-        mFabFavorito.animate()
-                .scaleX(0)
-                .scaleY(0)
-                .setListener(new AnimatorListenerAdapter()
-                {
-                    @Override public void onAnimationEnd(Animator animation)
-                    {
-                        super.onAnimationEnd(animation);
-                        toogleFavorito();
-                        mFabFavorito.animate()
-                                .scaleX(1)
-                                .scaleY(1)
-                                .setListener(null);
-                    }
-                });
         toogleFavorito();
     }
 
@@ -312,12 +282,27 @@ public class DetalheAnimeFragment extends Fragment
 
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
-        String message = getString(R.string.share_message) + " " +
-                mAnime.getTitulo() + ", " + getString(R.string.share_message_cont) + ".";
+        String locale = getResources().getConfiguration().locale.getLanguage();
+        String message;
+
+        if(locale.equals("ja"))
+        {
+            message = getString(R.string.share_message) + " " +
+                    mAnime.getTituloOriginal() + ", " + getString(R.string.share_message_cont) +
+                    "\n\n" +  getString(R.string.email) + "\n" +
+                    getString(R.string.phone);
+        }
+        else
+        {
+            message = getString(R.string.share_message) + " " +
+                    mAnime.getTitulo() + ", " + getString(R.string.share_message_cont) +
+            "\n\n" +  getString(R.string.email) + "\n" +
+                    getString(R.string.phone);
+        }
 
         Intent it = new Intent(Intent.ACTION_SEND);
         it.setType("text/plain");
-        it.putExtra(Intent.EXTRA_SUBJECT, mAnime.getTituloOriginal());
+        it.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
         it.putExtra(Intent.EXTRA_TEXT, message);
 
         mShareActionProvider.setShareIntent(it);

@@ -56,7 +56,6 @@ public class ListaFavoritoFragment extends Fragment
         View layout = inflater.inflate(R.layout.fragment_lista_favorito, container, false);
         ButterKnife.bind(this, layout);
 
-
         mLvAnimes.setEmptyView(mEmpty);
 
         mAdapter = new AnimesAdapter(getContext(), mAnimes);

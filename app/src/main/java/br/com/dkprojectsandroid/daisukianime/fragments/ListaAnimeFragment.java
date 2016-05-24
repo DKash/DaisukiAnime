@@ -168,34 +168,27 @@ public class ListaAnimeFragment extends Fragment
 
             String language = getResources().getConfiguration().locale.getLanguage();
 
-            if(language.equals("pt"))
+            switch (language)
             {
-                baixarJson(url_PT);
+                case "pt":
+                    baixarJson(url_PT);
+                    break;
+                case "es":
+                    baixarJson(url_ES);
+                    break;
+                case "fr":
+                    baixarJson(url_FR);
+                    break;
+                case "de":
+                    baixarJson(url_DE);
+                    break;
+                case "ja":
+                    baixarJson(url_JA);
+                    break;
+                default:
+                    baixarJson(url_EN);
+                    break;
             }
-            else if(language.equals("es"))
-            {
-                baixarJson(url_ES);
-            }
-            else if(language.equals("fr"))
-            {
-                baixarJson(url_FR);
-            }
-            else if(language.equals("de"))
-            {
-                baixarJson(url_DE);
-            }
-            else if(language.equals("ja"))
-            {
-                baixarJson(url_JA);
-            }
-            else
-            {
-                baixarJson(url_EN);
-            }
-
-            /*Request request =  new Request.Builder()
-                    .url("https://dl.dropbox.com/s/0umxxajscxg2v2q/DaisukiAnime%20Projeto%20Json.txt?dl=0")
-                    .build();*/
 
             try
             {

@@ -44,10 +44,6 @@ public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
             convertView = LayoutInflater.from(getContext())
                     .inflate(R.layout.fragment_detalhe_anime, parent, false);
             viewHolder = new ViewHolder(convertView);
-
-            /*convertView = LayoutInflater.from(getContext())
-                    .inflate(R.layout.item_detalhe_anime, parent, false);
-            viewHolder = new ViewHolder(convertView);*/
         }
         else
         {
@@ -57,8 +53,6 @@ public class AnimesDetalhesAdapter extends ArrayAdapter<Anime>
         Glide.with(getContext()).load(anime.getCapa()).into(viewHolder.mImgCapa);
 
         daf.carregarImgClassificacao();
-
-        //Glide.with(getContext()).load(anime.getClassificacao()).into(viewHolder.mImgClassifcacao);
 
         Glide.with(getContext()).load(anime.getFoto1()).into(viewHolder.mImgFoto01);
         Glide.with(getContext()).load(anime.getFoto2()).into(viewHolder.mImgFoto02);
